@@ -876,14 +876,118 @@ input { font-family: inherit; }
 *::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 6px; }
 *::-webkit-scrollbar-thumb:hover { background: #3a3a3a; }
 
-/* ===== Responsive ===== */
+/* ===== Hamburger menu button (mobile only) ===== */
+.menu-btn {
+  display: none;
+  background: #1f1f1f;
+  color: #fff;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+.menu-btn:hover { background: #2a2a2a; }
+.menu-btn:active { transform: scale(0.95); }
+
+/* ===== Drawer backdrop (mobile only) ===== */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 99;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===== Responsive: tablets and phones ===== */
 @media (max-width: 880px) {
-  .app { grid-template-columns: 1fr; }
-  .sidebar { display: none; }
-  .hero-title { font-size: 36px; }
-  .hero-cover { width: 140px; height: 140px; font-size: 60px; }
-  .queue-row { grid-template-columns: 28px 40px 1fr 60px; }
+  .app {
+    grid-template-columns: 1fr;
+    height: calc(100vh - 76px);
+  }
+
+  /* Sidebar becomes a slide-in drawer */
+  .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
+  .sidebar {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    bottom: 8px;
+    width: 280px;
+    max-width: 85vw;
+    z-index: 100;
+    transform: translateX(calc(-100% - 16px));
+    transition: transform 0.28s ease;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  }
+  .app.drawer-open .sidebar {
+    transform: translateX(0);
+  }
+
+  /* Topbar: hide the "Recommendations from X" badge -- too wide on mobile. */
+  .topbar { padding: 8px 4px; }
+  .search { max-width: 100%; flex: 1; }
+  .now-artist { display: none; }
+
+  /* Hero: stack the cover above the text */
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0 18px;
+  }
+  .hero-cover { width: 120px; height: 120px; font-size: 52px; }
+  .hero-title { font-size: 32px; letter-spacing: -0.5px; }
+  .hero-meta { font-size: 12px; }
+
+  /* Song grid: smaller cards so more fit on a phone screen */
+  .songs-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  .song-card { padding: 10px; }
+
+  /* Queue rows: drop the album column */
+  .queue-row { grid-template-columns: 28px 40px 1fr 36px 60px; }
   .queue-row .q-album { display: none; }
-  .player { grid-template-columns: 50% 1fr; }
-  .player-right { display: none; }
+
+  /* Player bar -- keep the queue button visible, just hide its label */
+  .player {
+    height: 76px;
+    padding: 0 8px;
+    grid-template-columns: 1fr auto auto;
+    gap: 8px;
+  }
+  .player-left { gap: 8px; }
+  .player-meta .player-title { font-size: 13px; }
+  .player-meta .player-artist { font-size: 11px; }
+  .player-cover { width: 44px; height: 44px; }
+  .player-center .progress { display: none; }
+  .player-right .muted.small { display: none; }
+  .queue-btn { padding: 6px 8px; }
+
+  /* Hide "Clear queue" text label on mobile -- save space */
+  .section-head h3 { font-size: 18px; }
+
+  /* Heart buttons on cards: bigger touch targets */
+  .like-btn-card { width: 32px; height: 32px; font-size: 18px; }
+}
+
+/* ===== Phones (narrower than ~480px) ===== */
+@media (max-width: 480px) {
+  .hero-title { font-size: 26px; }
+  .songs-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
 }

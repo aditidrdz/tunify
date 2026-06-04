@@ -608,10 +608,37 @@ function scrollMainTo(top) {
 
 /* ---------- Wire up controls ---------- */
 
+// ===== Mobile sidebar drawer =================================================
+function openDrawer() {
+  document.querySelector(".app")?.classList.add("drawer-open");
+  const bd = document.getElementById("drawer-backdrop");
+  if (bd) { bd.hidden = false; requestAnimationFrame(() => bd.classList.add("open")); }
+}
+function closeDrawer() {
+  document.querySelector(".app")?.classList.remove("drawer-open");
+  const bd = document.getElementById("drawer-backdrop");
+  if (bd) {
+    bd.classList.remove("open");
+    setTimeout(() => { bd.hidden = true; }, 250);
+  }
+}
+function toggleDrawer() {
+  const app = document.querySelector(".app");
+  if (app?.classList.contains("drawer-open")) closeDrawer();
+  else openDrawer();
+}
+
 function wireControls() {
   $("play-btn").addEventListener("click", togglePlay);
   $("next-btn").addEventListener("click", playNext);
   $("prev-btn").addEventListener("click", playPrev);
+
+  // Hamburger menu (mobile)
+  document.getElementById("menu-btn")?.addEventListener("click", toggleDrawer);
+  document.getElementById("drawer-backdrop")?.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDrawer();
+  });
 
   document.querySelector(".bar").addEventListener("click", (e) => {
     if (!state.current || !audio.duration) return;
@@ -686,6 +713,7 @@ function wireControls() {
         renderLikedView();
         scrollMainTo(0);
       }
+      closeDrawer();
     });
   });
 

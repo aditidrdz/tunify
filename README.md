@@ -50,6 +50,25 @@ Built with **Flask + vanilla JS + CSS**. Uses the **iTunes Search API** for albu
 </tr>
 </table>
 
+### Mobile view — slide-in drawer + touch-optimized grid
+
+<table>
+<tr>
+<td width="50%" align="center">
+
+<img src="docs/screenshots/mobile_home.png" width="280" alt="Mobile home" />
+<br/>**On a phone**
+
+</td>
+<td width="50%" align="center">
+
+<img src="docs/screenshots/mobile_drawer.png" width="280" alt="Mobile drawer" />
+<br/>**Tap ☰ for the nav drawer**
+
+</td>
+</tr>
+</table>
+
 ---
 
 ## ✨ Features
@@ -122,6 +141,31 @@ pyinstaller Tunify.spec --noconfirm
 ```
 
 The .exe lands in `dist/Tunify.exe` (~25 MB).
+
+---
+
+## 📱 Using Tunify from your phone
+
+Tunify also works as a **mobile web app** — same UI, optimized for touch.
+
+### Same-WiFi access
+
+When you start Tunify (any method), the console prints something like:
+```
+  Starting Tunify...
+  - On this computer:  http://127.0.0.1:5000
+  - On any device on the same WiFi:  http://192.168.1.42:5000
+```
+
+Just open the second URL on your phone's browser. Tap the **☰** button in the top-left to access Home / Search / Liked Songs / Artists.
+
+> **First time only:** Windows Firewall may pop up asking whether to allow the app on private networks. Click **Allow access**. If you missed the popup, manually allow `Tunify.exe` (or `python.exe`) for "Private networks" in **Settings → Privacy & Security → Windows Security → Firewall**.
+
+### From anywhere (not just same WiFi)
+
+Two options:
+- **Quick & temporary:** Install [ngrok](https://ngrok.com/download), run `ngrok http 5000` while Tunify is running, and you get a public `https://*.ngrok-free.app` URL that works on any phone anywhere.
+- **Permanent:** Deploy to [Render.com](https://render.com) (free tier supports Flask). I haven't pre-built this — ping me / open an issue if you want a deployment guide.
 
 ### (Optional) Use MongoDB instead of a JSON file for user accounts
 

@@ -13,6 +13,9 @@
   />
 </head>
 <body>
+  <!-- Backdrop for the mobile sidebar drawer -->
+  <div id="drawer-backdrop" class="drawer-backdrop" hidden></div>
+
   <div class="app">
     <!-- ===== Sidebar ===== -->
     <aside class="sidebar">
@@ -51,6 +54,9 @@
     <!-- ===== Main ===== -->
     <main class="main">
       <header class="topbar">
+        <button id="menu-btn" class="menu-btn" aria-label="Open menu" title="Menu">
+          <span>&#9776;</span>
+        </button>
         <div class="search">
           <input
             id="search-input"
