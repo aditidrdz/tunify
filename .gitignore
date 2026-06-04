@@ -61,6 +61,13 @@ data/users.json
 data/youtube_ids.json
 data/enriched.json
 
+# ---------------------------------------------------------------------------
+# PyInstaller build artifacts
+# ---------------------------------------------------------------------------
+build/
+dist/
+*.manifest
+
 # Misc
 *.log
 .cache/

@@ -20,7 +20,9 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-CACHE_PATH = Path(__file__).parent / "enriched.json"
+from data.paths import data_dir
+
+CACHE_PATH = data_dir() / "enriched.json"
 ITUNES_ENDPOINT = "https://itunes.apple.com/search"
 TIMEOUT_SEC = 8
 

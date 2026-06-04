@@ -20,7 +20,7 @@ HOST = "127.0.0.1"
 PORT = 5000
 
 
-def _wait_for_port(host: str, port: int, timeout: float = 30.0) -> bool:
+def _wait_for_port(host: str, port: int, timeout: float = 180.0) -> bool:
     """Block until the given TCP port accepts connections, or timeout."""
     deadline = time.time() + timeout
     while time.time() < deadline:
@@ -37,8 +37,8 @@ def _open_browser_when_ready() -> None:
         webbrowser.open(f"http://{HOST}:{PORT}")
     else:
         print(
-            f"[launch] Server didn't open port {PORT} within 30s -- "
-            "open the URL manually."
+            f"[launch] Server didn't open port {PORT} in time -- "
+            f"open http://{HOST}:{PORT} in your browser manually."
         )
 
 

@@ -18,6 +18,8 @@ from pathlib import Path
 from threading import Lock
 from typing import Any
 
+from data.paths import data_dir
+
 try:
     import yt_dlp  # type: ignore
     YT_DLP_AVAILABLE = True
@@ -27,7 +29,7 @@ except Exception as exc:  # pragma: no cover - import guard
     YT_DLP_AVAILABLE = False
 
 
-CACHE_PATH = Path(__file__).parent / "youtube_ids.json"
+CACHE_PATH = data_dir() / "youtube_ids.json"
 _LOCK = Lock()
 _CACHE: dict[str, str | None] = {}
 

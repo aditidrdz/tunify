@@ -68,7 +68,17 @@ Built with **Flask + vanilla JS + CSS**. Uses the **iTunes Search API** for albu
 
 ## 🚀 Quick start
 
-### One-click launch (recommended)
+### ⭐ Easiest — download the standalone .exe (Windows, no Python needed)
+
+1. Go to the **[Releases page](https://github.com/aditidrdz/tunify/releases/latest)**
+2. Download **`Tunify.exe`** (~25 MB)
+3. Double-click it. Your browser opens automatically at `http://127.0.0.1:5000`. Sign up and start listening.
+
+A `tunify_data/` folder will appear next to the .exe — that's where your user accounts and caches live. Delete the folder to reset everything; copy it elsewhere to back up.
+
+> Windows SmartScreen may warn you because the .exe is unsigned. Click **More info → Run anyway**. (It's just Python + Flask + your repo; the source is right here for anyone to verify.)
+
+### 🥈 Easy — one-click script (any OS, needs Python)
 
 **Prerequisite:** Python 3.10 or newer ([download here](https://www.python.org/downloads/) — during install tick **"Add Python to PATH"**).
 
@@ -82,7 +92,7 @@ That's it. The script creates a virtual environment, installs everything, starts
 
 > **First-run note:** The first launch takes ~1–2 minutes (downloading deps + fetching album art from iTunes API). Every launch after that is instant.
 
-### Manual setup (developer mode)
+### 🥉 Manual setup (developer mode)
 
 If you'd rather drive it yourself:
 
@@ -101,6 +111,17 @@ python app.py
 ```
 
 Then open `http://127.0.0.1:5000`.
+
+### 🛠️ Building your own Tunify.exe
+
+If you want to rebuild the standalone executable yourself:
+
+```bash
+pip install pyinstaller
+pyinstaller Tunify.spec --noconfirm
+```
+
+The .exe lands in `dist/Tunify.exe` (~25 MB).
 
 ### (Optional) Use MongoDB instead of a JSON file for user accounts
 

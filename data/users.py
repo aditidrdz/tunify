@@ -38,15 +38,17 @@ from typing import Any
 
 from werkzeug.security import check_password_hash, generate_password_hash
 
+from data.paths import data_dir, project_root
+
 # Load .env if present so MONGODB_URI etc. just work in dev.
 try:
     from dotenv import load_dotenv
-    load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+    load_dotenv(project_root() / ".env")
 except Exception:
     pass
 
 
-USERS_PATH = Path(__file__).parent / "users.json"
+USERS_PATH = data_dir() / "users.json"
 _LOCK = Lock()
 
 
