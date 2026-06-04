@@ -66,62 +66,45 @@ Built with **Flask + vanilla JS + CSS**. Uses the **iTunes Search API** for albu
 
 ---
 
-## 🚀 Quick start (for anyone cloning this repo)
+## 🚀 Quick start
 
-### Prerequisites
-- **Python 3.10 or newer** ([download](https://www.python.org/downloads/))
-- **Git** ([download](https://git-scm.com/downloads))
-- An internet connection on first run (to fetch album art and YouTube audio)
-- *Optional:* a free [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) account if you want cloud-stored user accounts
+### One-click launch (recommended)
 
-### 1. Clone the repo
+**Prerequisite:** Python 3.10 or newer ([download here](https://www.python.org/downloads/) — during install tick **"Add Python to PATH"**).
+
+Then just:
+
+1. Download or clone this repo
+2. Double-click **`run.bat`** (Windows) or run **`./run.sh`** (macOS/Linux)
+3. Your browser opens automatically at `http://127.0.0.1:5000`. Sign up and start listening.
+
+That's it. The script creates a virtual environment, installs everything, starts the server, and opens your browser — all in one go. Subsequent launches skip the install step and start in ~3 seconds.
+
+> **First-run note:** The first launch takes ~1–2 minutes (downloading deps + fetching album art from iTunes API). Every launch after that is instant.
+
+### Manual setup (developer mode)
+
+If you'd rather drive it yourself:
+
 ```bash
 git clone https://github.com/aditidrdz/tunify.git
 cd tunify
-```
-
-### 2. Create a virtual environment
-
-**Windows (PowerShell):**
-```powershell
 python -m venv .venv
+
+# Windows:
 .\.venv\Scripts\Activate.ps1
-```
-
-**macOS / Linux:**
-```bash
-python3 -m venv .venv
+# macOS / Linux:
 source .venv/bin/activate
-```
 
-> If PowerShell blocks the activation script, run this once:
-> `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`
-
-### 3. Install dependencies
-```bash
 pip install -r requirements.txt
-```
-
-### 4. (Optional) Configure MongoDB
-If you want user accounts stored in MongoDB Atlas instead of a local JSON file:
-
-1. Copy `.env.example` to `.env`
-2. Set `MONGODB_URI` to your Atlas connection string
-3. (Skip this step entirely if you just want to try the app locally — it'll use `data/users.json`.)
-
-### 5. Run the app
-```bash
 python app.py
 ```
 
-Then open **http://127.0.0.1:5000** in your browser.
+Then open `http://127.0.0.1:5000`.
 
-> **First-run note:** The first time you start the app, it spends ~30–60 seconds fetching album art and audio previews for the 56 bundled songs from the iTunes API. Results are cached to `data/enriched.json` so subsequent restarts are instant.
+### (Optional) Use MongoDB instead of a JSON file for user accounts
 
-### 6. Sign up and start playing
-- Click **"Don't have an account? Sign up"** on the login page
-- Pick any artist or song
-- Watch the queue auto-fill with songs by that same artist
+Copy `.env.example` → `.env` and set `MONGODB_URI` to your [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) connection string. The app auto-detects it on next launch. See [Switching to MongoDB Atlas](#-switching-to-mongodb-atlas) below.
 
 ---
 
@@ -129,6 +112,9 @@ Then open **http://127.0.0.1:5000** in your browser.
 
 ```
 tunify/
+├── run.bat                         # One-click launcher (Windows)
+├── run.sh                          # One-click launcher (macOS/Linux)
+├── launch.py                       # Auto-opens browser when server is ready
 ├── app.py                          # Flask app + routes + recommendation logic
 ├── requirements.txt                # Python dependencies
 ├── .env.example                    # Template for environment variables
