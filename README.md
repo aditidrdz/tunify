@@ -8,6 +8,50 @@ Built with **Flask + vanilla JS + CSS**. Uses the **iTunes Search API** for albu
 
 ---
 
+## 📸 Screenshots
+
+### Logged-in home — 56 songs across 10 artists, real album art from iTunes
+![Home page](docs/screenshots/home.png)
+
+### Same-artist queue in action — pick *Tera Zikr*, get 18 more Darshan Raval songs
+![Slide-in queue panel](docs/screenshots/queue.png)
+
+### Now playing with full-length audio (streamed from YouTube)
+![Now playing](docs/screenshots/player.png)
+
+<table>
+<tr>
+<td width="50%">
+
+**Live search across iTunes**
+![Search results](docs/screenshots/search.png)
+
+</td>
+<td width="50%">
+
+**Liked Songs — per-user, server-side**
+![Liked songs](docs/screenshots/liked.png)
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+**Sign in**
+![Login page](docs/screenshots/login.png)
+
+</td>
+<td width="50%">
+
+**Sign up**
+![Signup page](docs/screenshots/signup.png)
+
+</td>
+</tr>
+</table>
+
+---
+
 ## ✨ Features
 
 - 🎯 **Strict same-artist recommendations** — once you pick a song, every recommendation is by that same artist.
@@ -103,9 +147,15 @@ tunify/
 │   ├── index.html                  # Main player UI
 │   └── login.html                  # Login / signup page
 │
-└── static/
-    ├── css/style.css               # Spotify-style dark theme
-    └── js/app.js                   # Frontend logic (fetch, render, playback)
+├── static/
+│   ├── css/style.css               # Spotify-style dark theme
+│   └── js/app.js                   # Frontend logic (fetch, render, playback)
+│
+├── tools/
+│   └── take_screenshots.py         # Playwright script that regenerates README images
+│
+└── docs/
+    └── screenshots/                # PNGs embedded in this README
 ```
 
 ---
