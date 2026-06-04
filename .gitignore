@@ -1,0 +1,67 @@
+# ---------------------------------------------------------------------------
+# Secrets - NEVER commit these
+# ---------------------------------------------------------------------------
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# ---------------------------------------------------------------------------
+# Editors / IDEs
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------------------------------------------
+# Flask
+# ---------------------------------------------------------------------------
+instance/
+.flaskenv
+
+# ---------------------------------------------------------------------------
+# Tunify-specific - generated caches and user data.
+# Keep these private to each deployment.
+# ---------------------------------------------------------------------------
+data/users.json
+data/youtube_ids.json
+data/enriched.json
+
+# Misc
+*.log
+.cache/
+.pytest_cache/

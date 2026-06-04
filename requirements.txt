@@ -1,0 +1,4 @@
+Flask==3.0.3
+yt-dlp>=2026.3.17
+pymongo>=4.7.0
+python-dotenv>=1.0.1

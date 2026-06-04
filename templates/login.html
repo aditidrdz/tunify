@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ "Sign up" if mode == "register" else "Sign in" }} · Tunify</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body class="auth-body">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="auth-brand">
+        <span class="logo-dot"></span>
+        <h1>Tunify</h1>
+      </div>
+
+      <h2 class="auth-title">
+        {% if mode == "register" %}Create your account{% else %}Sign in to Tunify{% endif %}
+      </h2>
+      <p class="auth-sub">
+        {% if mode == "register" %}
+          Save your liked songs and pick up where you left off on any device.
+        {% else %}
+          Welcome back. Same-artist queues await.
+        {% endif %}
+      </p>
+
+      {% if error %}
+        <div class="auth-error">{{ error }}</div>
+      {% endif %}
+
+      <form
+        method="post"
+        action="{{ url_for('register') if mode == 'register' else url_for('login') }}"
+        class="auth-form"
+        autocomplete="off"
+      >
+        <label class="auth-field">
+          <span>Username</span>
+          <input
+            type="text"
+            name="username"
+            required
+            autofocus
+            autocomplete="username"
+            spellcheck="false"
+            placeholder="e.g. darshan_fan"
+          />
+        </label>
+
+        <label class="auth-field">
+          <span>Password</span>
+          <input
+            type="password"
+            name="password"
+            required
+            autocomplete="{{ 'new-password' if mode == 'register' else 'current-password' }}"
+            placeholder="{{ 'At least 4 characters' if mode == 'register' else 'Enter your password' }}"
+          />
+        </label>
+
+        <button type="submit" class="auth-submit">
+          {% if mode == "register" %}Create account{% else %}Sign in{% endif %}
+        </button>
+      </form>
+
+      <div class="auth-switch">
+        {% if mode == "register" %}
+          Already have an account?
+          <a href="{{ url_for('login') }}">Sign in</a>
+        {% else %}
+          New to Tunify?
+          <a href="{{ url_for('register') }}">Create an account</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="auth-footer">
+      Tunify · Same-artist music recommendations
+    </div>
+  </div>
+</body>
+</html>
